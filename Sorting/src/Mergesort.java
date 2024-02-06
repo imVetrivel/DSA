@@ -8,6 +8,7 @@ public class Mergesort {
         for (int i = 0; i < n; i++)
             b[i] = ab.nextInt();
         mergesort(b, 0, n - 1);
+        System.out.println(Arrays.toString(b));
         ab.close();
     }
 
