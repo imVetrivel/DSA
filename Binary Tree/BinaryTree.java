@@ -1,6 +1,7 @@
 import java.util.*;
-
 public class BinaryTree {
+    
+    Node root;
     class Node {
         int data;
         Node left;
@@ -12,9 +13,6 @@ public class BinaryTree {
             right = null;
         }
     }
-
-    Node root;
-
     public BinaryTree(int n) {
         root = new Node(n);
     }
@@ -40,11 +38,57 @@ public class BinaryTree {
             inorder(root.right);
         }
     }
+     
+    // level order
+    public ArrayList<ArrayList<Integer>> levelorder(Node root){
+        ArrayList<ArrayList<Integer>>m=new ArrayList<>();
+        if (root == null)
+       return m; 
+        Queue<Node> q =new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            ArrayList<Integer>li=new ArrayList<>();
+            int s=q.size();
+            for(int i=0;i<s;i++){
+                Node x=q.poll();
+                if(x.left!=null){
+                    q.add(x.left);
+                }
+                if(x.right!=null){
+                    q.add(x.right);
+                }
+                li.add(x.data);
+            }
+            m.add(li);
+            
+        }
+        return m;
+       
+    }
 
+    //  preorder
+    public void preorder(Node root) {
+        if (root != null) {
+            System.out.print(root.data + " ");
+            preorder(root.left);
+            preorder(root.right);
+        }
+    }
+
+    // postorder
+    public void postorder(Node root) {
+        if (root != null) {
+            postorder(root.left);
+            postorder(root.right);
+            System.out.print(root.data + " ");
+        }
+    }
+
+    //  search
     public Node search(Node root, int n) {
         if (root == null || root.data == n) {
             return root;
-        }
+        } 
         if (n < root.data) {
             return search(root.left, n);
         } else {
@@ -56,22 +100,45 @@ public class BinaryTree {
         Scanner ab = new Scanner(System.in);
         BinaryTree bst = new BinaryTree(10);
         bst.insert(bst.root, 20);
-        bst.insert(bst.root, 30);
+        bst.insert(bst.root, 3);
         bst.insert(bst.root, 40);
-        bst.insert(bst.root, 40);
+        // bst.insert(bst.root, 40);
         bst.insert(bst.root, 50);
-        bst.inorder(bst.root);
-
-        if (bst.search(bst.root, 30) == null)
-            System.out.println(" Not Found");
-        else
-            System.out.println("Found");
+       
+        System.out.println("level order");
+        System.out.println(bst.levelorder(bst.root));
         ab.close();
     }
    
     // deletion
-    public void delete(Node root,int n)
+    public Node delete(Node root,int n)
     {
-        
+        if(root.data==n){
+
+            if(root.left==null && root.right==null)
+            {
+                return null;
+            }
+           else if(root.left==null && root.right!=null)
+            {
+                return root.right;
+            }
+           else if(root.left!=null && root.right==null)
+            {
+                return root.left;
+            }
+            else{
+                Node temp=root.right;
+                while(temp.left!=null)
+                temp=temp.left;
+                root.data=temp.data;
+                root.right=delete(root.right, temp.data);
+            }
+        }
+        if(n < root.data)
+        root.left=delete(root.left,n);
+        else
+        root.right=delete(root.right,n);
+        return root;
     }
 }
