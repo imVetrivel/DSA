@@ -18,7 +18,6 @@ public class bubblesort {
                     b[j + 1] = temp;
                 }
             }
-
         }
       System.out.println(Arrays.toString(b));
         ab.close();

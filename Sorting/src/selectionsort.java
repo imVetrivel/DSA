@@ -20,11 +20,8 @@ public class selectionsort {
             temp = b[minpos];
             b[minpos] = b[i];
             b[i] = temp;
-
         }
-        for (int i = 0; i < n; i++) {
-            System.out.println(b[i]);
-        }
+        System.out.println(Arrays.toString(b));
         ab.close();
     }
 }
