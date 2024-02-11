@@ -56,6 +56,9 @@ public class Singly {
 
     // deleteFirst Node
     public void deletefirst() {
+        if (head == null) {
+            return;
+        }
         Node temp = head;
         head = temp.next;
         temp.next = null;
@@ -63,6 +66,9 @@ public class Singly {
 
     // deleteMiddle Node
     public void deletemid(int pos) {
+        if (head == null) {
+            return;
+        }
         Node prev = head;
         Node current = head;
         int count = 0;
@@ -77,6 +83,9 @@ public class Singly {
 
     // deleteLast Node
     public void deletelast() {
+        if (head == null) {
+            return;
+        }
         Node temp = head;
         while (temp.next != tail) {
             temp = temp.next;
