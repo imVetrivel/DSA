@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class Singlly {
+public class Singly {
 
     class Node {
         int data;
@@ -96,7 +96,7 @@ public class Singlly {
 
     public static void main(String[] args) {
 
-        Singlly s = new Singlly();
+        Singly s = new Singly();
         s.add(10);
         s.add(20);
         s.add(30);
