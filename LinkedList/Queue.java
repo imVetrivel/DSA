@@ -33,7 +33,9 @@ public class Queue {
         if (head == null) {
             return;
         }
+        Node temp = head;
         head = head.next;
+        temp.next = null;
     }
 
     // display
