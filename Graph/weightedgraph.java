@@ -2,7 +2,7 @@ package Graph;
 
 import java.util.*;
 
-public class Graph {
+public class weightedgraph {
 
     private Map<String, Node> nodes = new HashMap<>();
     private Map<Node,List<Node>> adjacencylist = new HashMap<>();
@@ -55,7 +55,7 @@ public class Graph {
     public static void main(String[] args){
     // Scanner ab = new Scanner(System.in);
 
-    Graph w = new Graph();
+    weightedgraph w = new weightedgraph();
     w.addNode("A");
     w.addNode("B");
     w.addNode("C");
