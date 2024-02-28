@@ -59,16 +59,26 @@ public class Graph {
     w.addNode("A");
     w.addNode("B");
     w.addNode("C");
+    w.addNode("D");
+    w.addNode("E");
+    w.addNode("F");
 
     w.addEdge("A", "C");
     w.addEdge("A", "B");
-    w.addEdge("A", "A");
+    w.addEdge("B", "C");
+    w.addEdge("E", "F");
+    w.addEdge("D", "F");
+    w.addEdge("A", "D");
+    w.addEdge("A", "F");
+    // w.addEdge("A", "A");
     // w.print();
-    w.dfs("A");
+    w.dfs("D");
+    System.out.println();
+    w.bfs("D");
     }
 
 
-    // depthfirst search
+    // DepthFirst Search
     public void dfs(String n)
     {
         Node node = nodes.get(n);
@@ -79,7 +89,7 @@ public class Graph {
 
     public void dfs(Node n,Set<Node> node)
     {
-        System.out.println(n);
+        System.out.print(n+" ");
         node.add(n);
 
         for(Node a: adjacencylist.get(n))
@@ -90,26 +100,36 @@ public class Graph {
             }
         }
     }
+    
+    // BreadthFirst Search
+    public void bfs(String s)
+    {
+        Node temp = nodes.get(s);
 
+        if(temp == null)
+        {
+            return;
+        }
 
-    //  public void bfs(int v){
-    //     Queue<Integer> q = new LinkedList<>();
-    //     boolean visited[]=new boolean[n];
-    //     visited[v]=true;
-    //     q.add(v);
-    //     System.out.println(v);
-    //     while(!q.isEmpty())
-    //     {
-    //         v=q.poll();
-    //         for(int i=0;i<l[v].size();i++)
-    //         {
-    //             if(!visited[l[v].get(i)]){
-    //                 System.out.println(l[v].get(i));
-    //                 visited[l[v].get(i)]=true;
-    //                 q.add(l[v].get(i));
-    //             }
-    //         }
-    //     }
-    // }
+        Set<Node> visited = new HashSet<>();
+        Queue<Node> q = new LinkedList<>();
+        q.add(temp);
+        visited.add(temp);
+        System.out.print(temp.label+" ");
+        while(!q.isEmpty())
+        {
+            Node x = q.poll();
+            for(Node r:adjacencylist.get(x))
+            {
+                if(!visited.contains(r))
+                {
+                    System.out.print(r.label+" ");
+                    q.add(r);
+                    visited.add(r);
+                }
+                // System.out.println(visited);
+            }
+        }
+    }
 
 }
