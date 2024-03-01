@@ -52,8 +52,8 @@ public class ConnectedComponent {
             {
                 if(!set.contains(z))
                 {
-                    c++;
                     set = bfs(z,set);
+                    c++;
                 }
             }
         }
@@ -80,6 +80,55 @@ public class ConnectedComponent {
         return node;
     }
 
+    //  find ShortestPath Between two Vertex
+    public int ShortestPath(int a,int b)
+    {
+        Node start = nodes.get(a);
+        Node end = nodes.get(b);
+        
+        int path = Integer.MAX_VALUE;
+        
+        Set<Node> set = new HashSet<>();
+        for(Node z:adjlist.get(start))
+        {
+            set = bfs(z,end);
+            if(set!=null)
+            {
+            if(set.size() < path)
+            path=set.size();
+            }
+        }
+        return path;
+    }
+    
+    public Set<Node> bfs(Node a,Node end)
+    {
+        Set<Node> set = new HashSet<>();
+        Queue<Node> q = new LinkedList<>();
+        
+        set.add(a);
+        q.add(a);
+        
+        if(set.contains(end))
+        return set;
+        
+        while(!q.isEmpty())
+        {
+            Node z = q.poll();
+            for(Node x:adjlist.get(z))
+            {
+                if(!set.contains(x))
+                {
+                    set.add(x);
+                    q.add(x);
+                    if(set.contains(end))
+                    return set;
+                }
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args){
 
         ConnectedComponent c = new ConnectedComponent();
@@ -95,5 +144,11 @@ public class ConnectedComponent {
         c.addEdge(4,5);
 
         System.out.println(c.connect());
+
+        int path = c.ShortestPath(1, 5);
+        if(path == Integer.MAX_VALUE)
+            System.out.println("Path Does Not Exists");
+        else
+            System.out.println(path);
     }
 }
