@@ -58,4 +58,11 @@ public class weightedgraph {
 
    }
 
+   public static void main(String[] args){
+    Scanner ab=new Scanner(System.in);
+    weightedgraph w = new weightedgraph();
+    System.out.println(w.nodes);
+    ab.close();
+   }
+
 }
