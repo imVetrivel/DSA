@@ -45,6 +45,15 @@ public class SinglyRotate {
 		tail = temp;
 	}
 
+	// leftRotate
+	public void leftRotate()
+	{
+		tail.next = head;
+		head = head .next;
+		tail = tail.next;
+		tail.next = null;
+	}
+
 	public void print()
 	{
 		Node temp = head;
@@ -69,12 +78,16 @@ public class SinglyRotate {
 		s.print();
 		System.out.println();
 		for(int i=0;i<2;i++)
-		{
+		{ 
 			s.rightRotate();
-			s.print();
-			System.out.println();
 		}
 		s.print();
-		
+		System.out.println();
+
+		for(int i=0;i<2;i++)
+		{
+			s.leftRotate();
+		}
+		s.print();
 	}
 }
